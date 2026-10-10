@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF Translator (RU / FA)</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+<script src="vendor/arabic-reshaper.js"></script>
+<script src="vendor/fontkit.umd.min.js"></script>
+<script src="vendor/pdf-lib.min.js"></script>
+</head>
+<body>
+<main>
+<h1>PDF translator</h1>
+<p>Translate a PDF by URL into Russian or Persian. Layout, page size, and graphics stay in place. Text is covered and re-drawn in the translation.</p>
+
+<form id="form">
+<label>PDF URL
+<input id="pdfUrl" type="url" required size="80"
+ value="https://www.roykfiles.com/surrenderaccountability2004.pdf">
+</label>
+<label>Target language
+<select id="lang">
+<option value="ru">Russian</option>
+<option value="fa">Persian (Farsi)</option>
+</select>
+</label>
+<label>Local translator server
+<input id="serverUrl" type="url" value="http://127.0.0.1:8000">
+</label>
+<label>Pages to translate (blank = all, e.g. 1-3)
+<input id="pageRange" type="text" placeholder="1-3" pattern="[0-9,\- ]*">
+</label>
+<button id="go" type="submit">Translate</button>
+</form>
+
+<div id="status" role="status">Idle.</div>
+<progress id="progress" value="0" max="100" hidden></progress>
+<canvas id="preview" hidden></canvas>
+<div><a id="download" hidden>Download translated PDF</a></div>
+<pre id="log"></pre>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>
